@@ -7,7 +7,7 @@ public class Account {
     private int id = 0;
     private double balance = 0;
     private static double yearInterestRate = 0;
-    private Date dateCreated;
+    private final Date dateCreated;
 
     public Account() {
         dateCreated = new Date();
@@ -31,8 +31,29 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void withdraw(double amount) {
+
+        if (amount < 0) {
+            System.out.println("Cannot withdraw negative amount of money.");
+            return;
+        }
+
+        if (balance >= amount) {
+            balance -= amount;
+        } else {
+            System.out.println("Cannot withdraw. Balance is less than the amount to be withdrawn.");
+        }
+    }
+
+    public void deposit(double amount) {
+
+        if (amount < 0) {
+            System.out.println("Cannot withdraw negative amount of money.");
+            return;
+        }
+
+        balance += amount;
+
     }
 
     public static double getYearInterestRate() {
@@ -45,5 +66,13 @@ public class Account {
 
     public Date getDateCreated() {
         return dateCreated;
+    }
+
+    public static double getMonthlyInterestRate() {
+        return yearInterestRate/12.0;
+    }
+
+    public double getMonthlyInterest() {
+        return getMonthlyInterestRate() * balance;
     }
 }
