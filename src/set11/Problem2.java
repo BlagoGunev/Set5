@@ -22,7 +22,20 @@ public class Problem2 {
             array[ind2] = t;
         }
 
+        final String[] suits = new String[] {"clubs", "diamonds", "hearts", "spades"};
+        final String[] ranks = new String[] {
+                "Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
+                "Eight", "Nine", "Ten", "Jack", "Queen", "King"
+        };
 
+        for (int i = 0; i < 4; i++) {
+
+            int suitInd = array[i] / 13;
+            int rankInd = array[i] % 13;
+
+            System.out.printf("%s of %s", ranks[rankInd], suits[suitInd]);
+            System.out.println();
+        }
 
     }
 
