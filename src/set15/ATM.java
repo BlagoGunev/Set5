@@ -15,29 +15,35 @@ public class ATM {
         return selectedID;
     }
 
-    public void setID(int selectedID) {
+    public void setID(int selectedID) throws IllegalArgumentException {
         if (selectedID < 0 || selectedID > 9) {
-            return;
+            throw new IllegalArgumentException();
         }
         this.selectedID = selectedID;
     }
 
-    public void choice(int option) {
-
-        switch (option) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                this.selectedID = -1;
-                break;
-            default:
-                break;
+    public double balance() {
+        if (selectedID == -1) {
+            throw new IllegalArgumentException();
         }
 
+        return accounts[selectedID].getBalance();
+    }
+
+    public void withdraw(double amount) {
+        if (selectedID == -1) {
+            throw new IllegalArgumentException();
+        }
+
+        accounts[selectedID].withdraw(amount);
+    }
+
+    public void deposit(double amount) {
+        if (selectedID == -1) {
+            throw new IllegalArgumentException();
+        }
+
+        accounts[selectedID].deposit(amount);
     }
 
 }
